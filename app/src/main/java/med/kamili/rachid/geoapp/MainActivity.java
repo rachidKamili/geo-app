@@ -1,7 +1,5 @@
 package med.kamili.rachid.geoapp;
 
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,11 +15,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.List;
-import java.util.Locale;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
     }
 
-    @OnClick({R.id.btnCoder, R.id.btnGeoApi})
+    @OnClick({R.id.btnCoder, R.id.btnGeoApi, R.id.btnMapType})
     public void onBtnClicked(View view) {
         switch (view.getId()) {
             case R.id.btnCoder:
@@ -117,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }else {
                     mGeocodingManager.getLatLngByAddressAPI(etAdress.getText().toString());
                 }
+                break;
+            case R.id.btnMapType:
+                //Types go from 0 to 4
+                mMap.setMapType(new Random().nextInt(5));
                 break;
         }
     }
